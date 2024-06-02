@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PublicacionController;
-use App\Http\Controllers\VecinoController;
+use TCG\Voyager\Facades\Voyager;
+use App\Http\Controllers\EventController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,23 +15,11 @@ use App\Http\Controllers\VecinoController;
 |
 */
 
-Route::get('/', HomeController::class);
-
-Route::controller(PublicacionController::class)->group(function(){
-    Route::get('publicaciones', 'index');
-    Route::get('publicaciones/create', 'create');
-    Route::get('publicaciones/{publicacion}', 'show');    
+Route::get('/', function () {
+    return view('welcome');
 });
 
-Route::controller(VecinoController::class)->group(function(){
-    Route::get('vecinos', 'index');
-    Route::get('vecinos/create', 'create');
-    Route::get('vecinos/{vecino}', 'show');    
-    Route::get('/login', [VecinoController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [VecinoController::class, 'login']);
-    Route::get('/vecino/login', [VecinoController::class, 'showLoginForm'])->name('vecino.login');
-    
-});
+Route::get('/events', [EventController::class, 'index'])->name('events.index');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

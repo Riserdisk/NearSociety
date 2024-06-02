@@ -1,0 +1,5 @@
+{
+    "require": {
+        "tcg/voyager": "dev-1.6-l10"
+    }
+}

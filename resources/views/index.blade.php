@@ -11,7 +11,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h5 class="card-title">{{ $event->name }}</h5>
-                            <p class="card-text">{{ $event->description }}</p>
+                            <p class="card-text">{!! $event->description !!}</p>
                             <p><strong>Fecha:</strong> {{ $event->date }}</p>
                             <p><strong>Hora:</strong> {{ $event->time }}</p>
                             <p><strong>Lugar:</strong> {{ $event->location }}</p>

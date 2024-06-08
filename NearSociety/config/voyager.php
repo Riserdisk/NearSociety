@@ -10,6 +10,7 @@ return [
     |
     */
 
+    'guard' => 'voyager',
     'user' => [
         'add_default_role_on_register' => true,
         'default_role'                 => 'user',

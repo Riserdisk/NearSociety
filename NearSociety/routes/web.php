@@ -16,13 +16,14 @@ use App\Http\Controllers\Auth\NeighborLoginController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Rutas de autenticación
 Auth::routes();
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-
+// Ruta de visualizacion de los eventos
 Route::get('/events', [EventController::class, 'index'])->name('events.index');
 
 // Rutas de autenticación para vecinos
@@ -30,6 +31,7 @@ Route::get('neighbor/login', [NeighborLoginController::class, 'showLoginForm'])-
 Route::post('neighbor/login', [NeighborLoginController::class, 'login'])->name('neighbor.login.post');
 Route::post('neighbor/logout', [NeighborLoginController::class, 'logout'])->name('neighbor.logout');
 
+// Rutas de autenticación para administradores
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });

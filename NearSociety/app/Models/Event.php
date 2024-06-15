@@ -10,11 +10,18 @@ class Event extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'date', 'time', 'description', 'location', 'user_id',
+        'name',
+        'date',
+        'time',
+        'description',
+        'location',
+        'user_id',
+        'requires_max_attendees',
+        'max_attendees',
     ];
 
-    public function user()
+    public function attendees()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class, 'event_attendees');
     }
 }

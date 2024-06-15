@@ -1,25 +1,30 @@
 @extends('layouts.app')
 
-@section('title', 'Eventos de la Comunidad')
+@section('title', 'Eventos')
 
 @section('content')
-    <div class="container mt-4">
-        <h1>Eventos de la Comunidad</h1>
-        <div class="row">
-            @foreach($events as $event)
+<div class="container mt-5">
+    <div class="row">
+        @foreach ($events as $event)
+            @if (!$event->requires_max_attendees || $event->attendees->count() < $event->max_attendees)
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
                             <h5 class="card-title">{{ $event->name }}</h5>
                             <p class="card-text">{!! $event->description !!}</p>
-                            <p><strong>Fecha:</strong> {{ $event->date }}</p>
-                            <p><strong>Hora:</strong> {{ $event->time }}</p>
-                            <p><strong>Lugar:</strong> {{ $event->location }}</p>
-                            <p><strong>Operador:</strong> {{ $event->user->name }}</p>
+                            <p class="card-text"><small class="text-muted">{{ $event->date }} {{ $event->time }}</small></p>
+                            <p class="card-text">{{ $event->location }}</p>
+                            <form method="POST" action="{{ route('events.attend', $event->id) }}">
+                                @csrf
+                                <button type="submit" class="btn btn-primary" {{ $event->attendees->contains(auth()->user()->id) ? 'disabled' : '' }}>
+                                    {{ $event->attendees->contains(auth()->user()->id) ? 'Asistiendo' : 'Asistiré' }}
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            @endforeach
-        </div>
+            @endif
+        @endforeach
     </div>
+</div>
 @endsection

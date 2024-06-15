@@ -5,6 +5,7 @@ use TCG\Voyager\Facades\Voyager;
 use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\NeighborLoginController;
+use App\Http\Controllers\EventAttendeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,9 @@ Route::get('/events', [EventController::class, 'index'])->name('events.index');
 Route::get('neighbor/login', [NeighborLoginController::class, 'showLoginForm'])->name('neighbor.login');
 Route::post('neighbor/login', [NeighborLoginController::class, 'login'])->name('neighbor.login.post');
 Route::post('neighbor/logout', [NeighborLoginController::class, 'logout'])->name('neighbor.logout');
+
+Route::post('events/{event}/attend', [EventAttendeeController::class, 'attend'])->name('events.attend');
+
 
 // Rutas de autenticación para administradores
 Route::group(['prefix' => 'admin'], function () {

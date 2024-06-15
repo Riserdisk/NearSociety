@@ -8,6 +8,8 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Dark Mode CSS -->
+    <link href="{{ asset('css/dark-mode.css') }}" rel="stylesheet" id="dark-mode-css" disabled>
 </head>
 <body>
     <div id="app">
@@ -48,6 +50,10 @@
                                         {{ __('Cerrar Sesión') }}
                                     </a>
 
+                                    <a class="dropdown-item" href="#" id="toggle-dark-mode">
+                                        {{ __('Alternar Modo Oscuro') }}
+                                    </a>
+
                                     <form id="logout-form" action="{{ route('neighbor.logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
@@ -67,5 +73,28 @@
     <!-- jQuery and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleDarkModeBtn = document.getElementById('toggle-dark-mode');
+            const darkModeCss = document.getElementById('dark-mode-css');
+            
+            // Load saved theme
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                darkModeCss.removeAttribute('disabled');
+            }
+
+            // Toggle theme
+            toggleDarkModeBtn.addEventListener('click', function() {
+                if (darkModeCss.disabled) {
+                    darkModeCss.removeAttribute('disabled');
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    darkModeCss.setAttribute('disabled', 'true');
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -14,6 +14,11 @@
                             <p class="card-text">{!! $event->description !!}</p>
                             <p class="card-text"><small class="text-muted">{{ $event->date }} {{ $event->time }}</small></p>
                             <p class="card-text">{{ $event->location }}</p>
+                            @if ($event->requires_max_attendees)
+                                <p class="card-text">Asistentes: {{ $event->attendees->count() }} / {{ $event->max_attendees }}</p>
+                            @else
+                                <p class="card-text">Asistentes: {{ $event->attendees->count() }}</p>
+                            @endif
                             <form method="POST" action="{{ route('events.attend', $event->id) }}">
                                 @csrf
                                 <button type="submit" class="btn btn-primary" {{ $event->attendees->contains(auth()->user()->id) ? 'disabled' : '' }}>

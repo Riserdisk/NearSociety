@@ -14,6 +14,11 @@
                             <p class="card-text">{!! $event->description !!}</p>
                             <p class="card-text"><small class="text-muted">{{ $event->date }} {{ $event->time }}</small></p>
                             <p class="card-text">{{ $event->location }}</p>
+                            @if ($event->user)
+                                <p><strong>Operador:</strong> {{ $event->user->name }}</p>
+                            @else
+                                <p><strong>Operador:</strong> Desconocido</p>
+                            @endif
                             @if ($event->requires_max_attendees)
                                 <p class="card-text">Asistentes: {{ $event->attendees->count() }} / {{ $event->max_attendees }}</p>
                             @else

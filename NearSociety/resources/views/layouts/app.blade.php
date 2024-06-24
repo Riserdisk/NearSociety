@@ -71,30 +71,38 @@
     </div>
 
     <!-- jQuery and Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" async></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const toggleDarkModeBtn = document.getElementById('toggle-dark-mode');
-            const darkModeCss = document.getElementById('dark-mode-css');
-            
-            // Load saved theme
-            if (localStorage.getItem('darkMode') === 'enabled') {
-                darkModeCss.removeAttribute('disabled');
-            }
+        const toggleDarkModeBtn = document.getElementById('toggle-dark-mode');
+        const darkModeCss = document.getElementById('dark-mode-css');
+        
+        const enableDarkMode = () => {
+            darkModeCss.removeAttribute('disabled');
+            localStorage.setItem('darkMode', 'enabled');
+        };
 
-            // Toggle theme
-            toggleDarkModeBtn.addEventListener('click', function() {
-                if (darkModeCss.disabled) {
-                    darkModeCss.removeAttribute('disabled');
-                    localStorage.setItem('darkMode', 'enabled');
-                } else {
-                    darkModeCss.setAttribute('disabled', 'true');
-                    localStorage.setItem('darkMode', 'disabled');
-                }
-            });
+        const disableDarkMode = () => {
+            darkModeCss.setAttribute('disabled', 'true');
+            localStorage.setItem('darkMode', 'disabled');
+        };
+
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            enableDarkMode();
+        }
+
+        toggleDarkModeBtn.addEventListener('click', () => {
+            if (darkModeCss.disabled) {
+                enableDarkMode();
+            } else {
+                disableDarkMode();
+            }
         });
+    });
+
     </script>
 </body>
 </html>

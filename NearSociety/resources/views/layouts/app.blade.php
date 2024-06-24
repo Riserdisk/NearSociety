@@ -13,7 +13,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     NearSociety
@@ -33,9 +33,6 @@
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('neighbor.login') }}">{{ __('Iniciar Sesión') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
                             </li>
                         @else
                             <li class="nav-item dropdown">
@@ -74,35 +71,37 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" async></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" defer></script>
 
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-        const toggleDarkModeBtn = document.getElementById('toggle-dark-mode');
-        const darkModeCss = document.getElementById('dark-mode-css');
-        
-        const enableDarkMode = () => {
-            darkModeCss.removeAttribute('disabled');
-            localStorage.setItem('darkMode', 'enabled');
-        };
+            const toggleDarkModeBtn = document.getElementById('toggle-dark-mode');
+            const darkModeCss = document.getElementById('dark-mode-css');
+            const body = document.body;
 
-        const disableDarkMode = () => {
-            darkModeCss.setAttribute('disabled', 'true');
-            localStorage.setItem('darkMode', 'disabled');
-        };
+            const enableDarkMode = () => {
+                darkModeCss.removeAttribute('disabled');
+                body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'enabled');
+            };
 
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            enableDarkMode();
-        }
+            const disableDarkMode = () => {
+                darkModeCss.setAttribute('disabled', 'true');
+                body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'disabled');
+            };
 
-        toggleDarkModeBtn.addEventListener('click', () => {
-            if (darkModeCss.disabled) {
+            if (localStorage.getItem('darkMode') === 'enabled') {
                 enableDarkMode();
-            } else {
-                disableDarkMode();
             }
-        });
-    });
 
+            toggleDarkModeBtn.addEventListener('click', () => {
+                if (darkModeCss.disabled) {
+                    enableDarkMode();
+                } else {
+                    disableDarkMode();
+                }
+            });
+        });
     </script>
 </body>
 </html>
+

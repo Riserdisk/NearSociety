@@ -1,70 +1,70 @@
-/* public/css/dark-mode.css */
-
-body {
+body.dark-mode {
     background-color: #121212;
     color: #e0e0e0;
 }
 
-a {
+body.dark-mode a {
     color: #bb86fc;
 }
 
-a:hover {
+body.dark-mode a:hover {
     color: #3700b3;
 }
 
-.navbar {
+body.dark-mode .navbar {
     background-color: #333;
     border-bottom: 1px solid #444;
 }
 
-.card {
+body.dark-mode .card {
     background-color: #1e1e1e;
     border: 1px solid #333;
 }
 
-.card-title, .card-text {
+body.dark-mode .card-title, 
+body.dark-mode .card-text {
     color: #e0e0e0;
 }
 
-.btn-primary {
+body.dark-mode .btn-primary {
     background-color: #bb86fc;
     border-color: #bb86fc;
 }
 
-.btn-primary:hover {
+body.dark-mode .btn-primary:hover {
     background-color: #3700b3;
     border-color: #3700b3;
 }
 
-.form-control {
+body.dark-mode .form-control {
     background-color: #333;
     color: #e0e0e0;
     border: 1px solid #444;
 }
 
-.form-control:focus {
+body.dark-mode .form-control:focus {
     background-color: #444;
     color: #e0e0e0;
     border-color: #bb86fc;
 }
 
-table {
+body.dark-mode table {
     background-color: #1e1e1e;
     color: #e0e0e0;
 }
 
-table th, table td {
+body.dark-mode table th, 
+body.dark-mode table td {
     border: 1px solid #333;
 }
 
-.alert {
+body.dark-mode .alert {
     background-color: #333;
     color: #e0e0e0;
     border: 1px solid #444;
 }
 
-footer {
+body.dark-mode footer {
     background-color: #333;
     color: #e0e0e0;
     padding: 10px;

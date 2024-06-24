@@ -21,6 +21,6 @@ class EventAttendeeController extends Controller
         }
 
         // Redirigir a la lista de eventos con un mensaje de éxito
-        return redirect()->route('index')->with('success', 'Has confirmado tu asistencia.');
+        return redirect()->route('events.index')->with('success', 'Has confirmado tu asistencia.');
     }
 }

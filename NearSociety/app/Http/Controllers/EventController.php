@@ -16,16 +16,20 @@ class EventController extends Controller
         // Obtener la fecha y hora actual
         $now = Carbon::now();
 
-        // Separar los eventos en disponibles y no disponibles
+        // Separar los eventos en disponibles, cancelados y no disponibles
         $availableEvents = $events->filter(function ($event) use ($now) {
-            return (!$event->requires_max_attendees || $event->attendees->count() < $event->max_attendees) && $event->date . ' ' . $event->time >= $now;
+            return $event->status == 'disponible' && (!$event->requires_max_attendees || $event->attendees->count() < $event->max_attendees) && $event->date . ' ' . $event->time >= $now;
+        });
+
+        $cancelledEvents = $events->filter(function ($event) {
+            return $event->status == 'cancelado';
         });
 
         $unavailableEvents = $events->filter(function ($event) use ($now) {
-            return ($event->requires_max_attendees && $event->attendees->count() >= $event->max_attendees) || $event->date . ' ' . $event->time < $now;
+            return $event->status == 'no disponible' || ($event->requires_max_attendees && $event->attendees->count() >= $event->max_attendees) || $event->date . ' ' . $event->time < $now;
         });
 
-        // Pasar las dos listas de eventos a la vista
-        return view('index', compact('availableEvents', 'unavailableEvents'));
+        // Pasar las tres listas de eventos a la vista
+        return view('index', compact('availableEvents', 'cancelledEvents', 'unavailableEvents'));
     }
 }

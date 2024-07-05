@@ -18,6 +18,7 @@ class Event extends Model
         'user_id',
         'requires_max_attendees',
         'max_attendees',
+        'status',
     ];
 
     public function attendees()

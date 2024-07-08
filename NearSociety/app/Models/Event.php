@@ -21,11 +21,13 @@ class Event extends Model
         'status',
     ];
 
+    // Relación con el modelo User a través de la tabla event_attendees para ver los asistentes
     public function attendees()
     {
         return $this->belongsToMany(User::class, 'event_attendees');
     }
 
+    // Relación con el modelo User
     public function user()
     {
         return $this->belongsTo(User::class);

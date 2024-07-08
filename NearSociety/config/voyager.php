@@ -105,13 +105,14 @@ return [
         /*
          * Select default language
          */
-        'default' => 'en',
+        'default' => 'es',
 
         /*
          * Select languages that are supported.
          */
         'locales' => [
             'en',
+            'es',
             //'pt',
         ],
     ],
@@ -227,6 +228,7 @@ return [
         'allow_delete'        => true,
         'allow_create_folder' => true,
         'allow_rename'        => true,
+        'assets_path'         => '/vendor/tcg/voyager/assets',
         /*'watermark'           => [
             'source'         => 'watermark.png',
             'position'       => 'bottom-left',

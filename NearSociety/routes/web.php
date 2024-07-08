@@ -6,7 +6,6 @@ use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\NeighborLoginController;
 use App\Http\Controllers\EventAttendeeController;
-use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,13 +33,6 @@ Route::post('neighbor/login', [NeighborLoginController::class, 'login'])->name('
 Route::post('neighbor/logout', [NeighborLoginController::class, 'logout'])->name('neighbor.logout');
 
 Route::post('events/{event}/attend', [EventAttendeeController::class, 'attend'])->name('events.attend');
-
-// Rutas para las notificaciones
-Route::middleware(['auth'])->group(function () {
-    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
-    Route::put('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
-});
-
 
 // Rutas de autenticación para administradores
 Route::group(['prefix' => 'admin'], function () {
